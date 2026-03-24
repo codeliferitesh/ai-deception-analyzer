@@ -1,22 +1,25 @@
 import joblib
 import os
 
-MODEL_PATH = "saved_model/model.pkl"
-VEC_PATH = "saved_model/vectorizer.pkl"
+MODEL_PATH = "backend/saved_model/model.pkl"
+VEC_PATH = "backend/saved_model/vectorizer.pkl"
+
 
 def load_model():
     try:
         model = joblib.load(MODEL_PATH)
         vectorizer = joblib.load(VEC_PATH)
         return model, vectorizer
-    except Exception:
-        print("⚠️ Model not found or corrupted. Training new model...")
-        import train  # auto-train
+    except:
+        print("⚠️ Model not found. Training new model...")
+        import train
         model = joblib.load(MODEL_PATH)
         vectorizer = joblib.load(VEC_PATH)
         return model, vectorizer
 
+
 model, vectorizer = load_model()
+
 
 def predict(text):
     X = vectorizer.transform([text])

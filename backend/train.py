@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 import joblib
 import os
 
-os.makedirs("saved_model", exist_ok=True)
+os.makedirs("backend/saved_model", exist_ok=True)
 
 data = {
     "text": [
@@ -27,7 +27,7 @@ y = df["label"]
 model = LogisticRegression()
 model.fit(X, y)
 
-joblib.dump(model, "saved_model/model.pkl")
-joblib.dump(vectorizer, "saved_model/vectorizer.pkl")
+joblib.dump(model, "backend/saved_model/model.pkl")
+joblib.dump(vectorizer, "backend/saved_model/vectorizer.pkl")
 
 print("✅ Model trained")
